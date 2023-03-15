@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/davidfqudbserver/databases/AppsDB",
+      "type": "mssql.azure",
+      "connectionId": "connectionStrings:defaultConnection",
+      "dynamicId": null
+    },
+    "apis1": {
+      "ignored": "true",
+      "type": "apis.azure"
+    }
+  }
+}
