@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/scss/regular.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
+@import "mdb-angular-ui-kit/assets/scss/mdb.scss";
+
+.main-content{
+  background-color: #f0f0f0;
+}
+
+.full-height{
+  height: calc(100vh - 60px);
+}
+
+.carousel-control-next{
+  width:min-content;
+}
+
+.carousel-control-prev{
+  width:min-content;
+}
+.carousel-control-prev-icon{
+  color: #3B71CA;
+
+}
+
+.carousel-control-next-icon{
+  color: #3B71CA;
+}
+
+.side-bar{
+  height: 100vh;
+}
+
+.fav-cities-img{
+  height: 15vh; min-height: 60px;
+}
+
+.carousel-indicators{
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9e9d9d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 10px;
+}

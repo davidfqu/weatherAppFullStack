@@ -1,0 +1,79 @@
+<app-messages></app-messages>
+<div class="container-fluid" >
+  <div class="row">
+
+    <div class="col-2 d-flex flex-column side-bar"  >
+      <img src="assets/images/favCities.svg" class="mt-3 fav-cities-img">
+      <h5 class="mt-3 text-center">My Favorite Cities</h5>
+      <div class="list-group list-group-light overflow-auto mb-2">
+        <button (click)="getForecast(city.name)"
+        [ngClass]="{'active': forecastData ? forecastData.city.name == city.name: false}"
+        *ngFor="let city of favCities" type="button" class="list-group-item list-group-item-action  px-3 border-0" aria-current="true">
+          {{city.name}}
+        </button>
+      </div>
+    </div>
+    <div class="col-10 p-0  main-content" >
+      <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+          <a class="navbar-brand">Weather App</a>
+          <form class="d-flex input-group w-auto" (submit)="onSubmit()">
+            <input autofocus
+            [(ngModel)]="searchInput"
+            name="searchInput"
+              class="form-control rounded"
+              placeholder="City or US Zip Code"
+            />
+            <span class="input-group-text border-0">
+              <i class="fas fa-search text-white"></i>
+            </span>
+          </form>
+        </div>
+      </nav>
+      <div class="container">
+        <div *ngIf="forecastData; else welcome" class="container">
+          <div class="d-flex align-items-center mt-3">
+            <h1 class="mb-0 me-2" >{{forecastData.city.name}}</h1>
+            <button  *ngIf="!currentCityIsFav; else deleteFav" (click)="addFavCity(forecastData.city.name)" type="button" class="btn  btn-light  btn-floating" mdbTooltip="Add to favorites"
+            placement="right">
+              <i class="fas  fa-star"></i>
+            </button>
+            <ng-template #deleteFav>
+              <button   (click)="deleteFavCity(forecastData.city.name)" type="button" class="btn btn-warning  btn-floating" mdbTooltip="Remove from favorites"
+            placement="right">
+              <i class="fas  fa-star"></i>
+            </button>
+            </ng-template>
+          </div>
+          <h3 class="mt-2">5 day weather forecast</h3>
+          <mdb-carousel [controls]="true" [indicators]="true" [ride]="false" [interval]="0" [wrap]="false">
+              <mdb-carousel-item  *ngFor="let carouselItemIndex of carouselIndexes">
+                <div class="row">
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-10">
+                    <div class="row py-2">
+                      <div *ngFor="let forecastItem of forecastData.list | onlyDays : carouselItemIndex*cardsPerCarouselItem : carouselItemIndex*cardsPerCarouselItem + cardsPerCarouselItem " class="col-md-4" >
+                        <app-forecast-daily-card [forecastItem]="forecastItem" [forecastHourlyItems]="forecastData.list" [date]="forecastItem.dt_txt"></app-forecast-daily-card>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1"></div>
+                </div>
+              </mdb-carousel-item>
+          </mdb-carousel>
+          </div>
+          <ng-template #welcome>
+            <app-welcome></app-welcome>
+          </ng-template>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+

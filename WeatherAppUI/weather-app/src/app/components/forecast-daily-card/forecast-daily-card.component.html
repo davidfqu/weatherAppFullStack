@@ -1,0 +1,24 @@
+<div *ngIf="forecastItem" class="card">
+  <div class="card-header">
+    <h4  class="mb-0 card-title">{{forecastItem.dt_txt | date:'EEEE'}}</h4>
+  </div>
+  <div class="card-body text-center">
+    <h5 class="card-title">{{forecastItem.dt_txt | date:'MMM dd'}}</h5>
+    <div *ngIf="forecastItem.weather.length>0">
+      <img src="https://openweathermap.org/img/wn/{{forecastItem.weather[0].icon}}@2x.png">
+    </div>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <h3 class="text-danger">
+        {{forecastItem.main.temp_max | number : '1.0-0'}}&deg;C
+      </h3>
+      <h3 class="text-primary">
+        {{forecastItem.main.temp_min| number : '1.0-0'}}&deg;C
+      </h3>
+    </div>
+
+     <p *ngIf="forecastItem.weather.length>0">
+          {{forecastItem.weather[0].description | titlecase}}
+    </p>
+    <button (click)="openModal()" class="btn btn-secondary">More</button>
+  </div>
+</div>
